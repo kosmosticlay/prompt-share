@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { Link } from "react-router";
 import { Separator } from "./ui/separator";
 import LogoSm from "./logo/logo-sm";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const navigationMenus = [
   {
@@ -59,13 +60,15 @@ const navigationMenus = [
   },
 ];
 
-export default function Navigation() {
+export default function Navigation({ isLoggedIn }: { isLoggedIn: boolean }) {
   return (
     <nav className="h-16 flex items-center justify-between px-5">
       {/* 네비게이션바 왼쪽 메뉴 */}
       <div className="flex items-center gap-2 md:gap-4">
+        {/* 로고 */}
         <LogoSm className="md:hidden" />
         <LogoMedium className="hidden md:flex" />
+        {/* 구분선 */}
         <div className="h-8">
           <Separator orientation="vertical" className="hidden md:block" />
         </div>
@@ -97,34 +100,52 @@ export default function Navigation() {
             </NavigationMenuItem>
 
             {/* 마이페이지 메뉴 */}
-            <NavigationMenuItem>
-              <Link to={navigationMenus[1].to}>
-                <NavigationMenuTrigger className="cursor-pointer">
-                  {navigationMenus[1].name}
-                </NavigationMenuTrigger>
-              </Link>
-              <NavigationMenuContent>
-                <ul className="md:w-[380px] w-[200px] grid md:grid-cols-2 grid-cols-1 gap-2">
-                  {navigationMenus[1].items.map((item) => (
-                    <NavigationMenuLink asChild key={item.name}>
-                      <Link to={item.to}>
-                        <span className="font-bold"> {item.name}</span>
-                        <span className="md:block hidden text-sm text-gray-500">
-                          {item.description}
-                        </span>
-                      </Link>
-                    </NavigationMenuLink>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            {isLoggedIn && (
+              <NavigationMenuItem>
+                <Link to={navigationMenus[1].to}>
+                  <NavigationMenuTrigger className="cursor-pointer">
+                    {navigationMenus[1].name}
+                  </NavigationMenuTrigger>
+                </Link>
+                <NavigationMenuContent>
+                  <ul className="md:w-[380px] w-[200px] grid md:grid-cols-2 grid-cols-1 gap-2">
+                    {navigationMenus[1].items.map((item) => (
+                      <NavigationMenuLink asChild key={item.name}>
+                        <Link to={item.to}>
+                          <span className="font-bold"> {item.name}</span>
+                          <span className="md:block hidden text-sm text-gray-500">
+                            {item.description}
+                          </span>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
       </div>
       {/* 네비게이션바 오른쪽 메뉴 */}
       <div className="flex items-center gap-2">
-        <Button variant="outline">로그인</Button>
-        <Button variant="outline">회원가입</Button>
+        {/* <MoonIcon className="size-5" /> */}
+        {isLoggedIn ? (
+          <Link to="/my">
+            <Avatar className="size-10">
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </Link>
+        ) : (
+          <div className="flex items-center gap-2">
+            <Button asChild variant="outline">
+              <Link to="/auth/login">로그인</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/auth/signup">회원가입</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </nav>
   );

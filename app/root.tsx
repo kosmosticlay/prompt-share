@@ -39,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="min-w-sm overflow-x-hidden shrink-0">
-        <Navigation />
+        <Navigation isLoggedIn={true} />
         {children}
         <ScrollRestoration />
         <Scripts />
