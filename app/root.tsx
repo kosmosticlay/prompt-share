@@ -9,7 +9,9 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import Navigation from "./common/components/navigation";
 
+// Prentendard, Roboto 폰트 설정
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -36,7 +38,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-w-sm overflow-x-hidden shrink-0">
+        <Navigation isLoggedIn={true} />
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -45,8 +48,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// 에러 발생 시 Outlet 대신 ErrorBoundary 컴포넌트가 렌더링됨
 export default function App() {
-  return <Outlet />;
+  return (
+    <div className="mx-auto max-w-screen-lg">
+      <Outlet />
+    </div>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
