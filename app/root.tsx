@@ -40,7 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-w-sm overflow-x-hidden shrink-0">
         <Navigation isLoggedIn={true} />
-        {children}
+        <main className="pt-16 w-full h-fit">{children}</main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -50,11 +50,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 // 에러 발생 시 Outlet 대신 ErrorBoundary 컴포넌트가 렌더링됨
 export default function App() {
-  return (
-    <div className="mx-auto max-w-screen-lg">
-      <Outlet />
-    </div>
-  );
+  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

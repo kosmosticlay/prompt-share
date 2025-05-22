@@ -1,3 +1,10 @@
+import AnimatedHero from "../components/header/animated-hero";
+
 export default function HomePage() {
-  return <div className="w-full h-28 bg-amber-200">홈 화면</div>;
+  return (
+    <>
+      <AnimatedHero />
+      <div className="container-lg"></div>
+    </>
+  );
 }

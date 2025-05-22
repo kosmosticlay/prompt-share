@@ -15,7 +15,7 @@ export default [
     route("signup", "features/auth/pages/signup-page.tsx"),
   ]),
   // 검색 관련 라우트
-  route("search", "common/pages/search-page.tsx"),
+  route("search/:keyword?", "common/pages/search-page.tsx"),
   // 프롬프트 관련 라우트
   ...prefix("prompts", [
     route("create", "features/prompts/pages/prompt-create-page.tsx"), // 프롬프트 생성
