@@ -140,6 +140,34 @@ body {
   .container-lg {
     @apply mx-auto max-w-screen-lg;
   }
+  .custom-link {
+    @apply relative underline-offset-6;
+  }
+
+  .custom-link:hover {
+    background: linear-gradient(
+      to right,
+      var(--primary-orange),
+      var(--primary-purple)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .custom-link:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      var(--primary-orange),
+      var(--primary-purple)
+    );
+  }
 }
 
 @layer utilities {

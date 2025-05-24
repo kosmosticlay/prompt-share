@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -30,6 +31,10 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  const isAuthPage = location.pathname.includes("/auth");
+
   return (
     <html lang="en">
       <head>
@@ -39,7 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="min-w-sm overflow-x-hidden shrink-0">
-        <Navigation isLoggedIn={true} />
+        {!isAuthPage && <Navigation isLoggedIn={true} />}
         <main className="pt-16 w-full h-fit">{children}</main>
         <ScrollRestoration />
         <Scripts />

@@ -11,6 +11,10 @@ export default [
   // 인증 관련 라우트
   ...prefix("auth", [
     route("login", "features/auth/pages/login-page.tsx"),
+    ...prefix("social/:provider", [
+      route("start", "features/auth/pages/social-start-page.tsx"),
+      route("complete", "features/auth/pages/social-complete-page.tsx"),
+    ]),
     route("logout", "features/auth/pages/logout-page.tsx"),
     route("signup", "features/auth/pages/signup-page.tsx"),
   ]),
