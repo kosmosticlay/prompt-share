@@ -59,6 +59,8 @@ export default function SignupPage({ loaderData }: Route.ComponentProps) {
                 name="email"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
+                autoComplete="email"
+                placeholder="이메일을 입력해주세요."
               />
             </div>
 
@@ -75,6 +77,7 @@ export default function SignupPage({ loaderData }: Route.ComponentProps) {
                 name="nickname"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
+                placeholder="닉네임을 입력해주세요."
               />
             </div>
 
@@ -91,6 +94,7 @@ export default function SignupPage({ loaderData }: Route.ComponentProps) {
                 name="password"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
+                placeholder="비밀번호를 입력해주세요."
               />
               <p className="text-xs text-muted-foreground">
                 8자 이상 64자 이하로 입력해주세요.

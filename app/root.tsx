@@ -31,9 +31,9 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  const isAuthPage = location.pathname.includes("/auth");
+  const isAuthPage = pathname.includes("/auth");
 
   return (
     <html lang="en">
