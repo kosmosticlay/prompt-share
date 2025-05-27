@@ -1,6 +1,6 @@
 {
-  "id": "7302fb04-1b5c-4777-8c04-f854d0b60474",
-  "prevId": "604ec158-ddbc-4e39-aa36-be0e9c3113ee",
+  "id": "f750ab63-8cf9-4f06-b1a9-c8702a7f4715",
+  "prevId": "d3e5f24c-566d-4021-ae42-e490a16a43ea",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -8,14 +8,14 @@
       "name": "prompts",
       "schema": "",
       "columns": {
-        "id": {
-          "name": "id",
+        "prompmt_id": {
+          "name": "prompmt_id",
           "type": "bigint",
           "primaryKey": true,
           "notNull": true,
           "identity": {
             "type": "always",
-            "name": "prompts_id_seq",
+            "name": "prompts_prompmt_id_seq",
             "schema": "public",
             "increment": "1",
             "startWith": "1",
@@ -25,8 +25,8 @@
             "cycle": false
           }
         },
-        "user_id": {
-          "name": "user_id",
+        "profile_id": {
+          "name": "profile_id",
           "type": "uuid",
           "primaryKey": false,
           "notNull": true
@@ -62,20 +62,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "likes": {
-          "name": "likes",
-          "type": "bigint",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 0
-        },
-        "views": {
-          "name": "views",
-          "type": "bigint",
-          "primaryKey": false,
-          "notNull": false,
-          "default": 0
-        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -92,7 +78,21 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "prompts_profile_id_profiles_profile_id_fk": {
+          "name": "prompts_profile_id_profiles_profile_id_fk",
+          "tableFrom": "prompts",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "profile_id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
