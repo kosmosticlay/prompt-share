@@ -10,7 +10,7 @@ import { profiles } from "../users/schema";
 
 /* prompts */
 export const prompts = pgTable("prompts", {
-  prompmt_id: bigint({ mode: "number" })
+  prompt_id: bigint({ mode: "number" })
     .primaryKey()
     .generatedAlwaysAsIdentity(), // 프롬프트 고유 아이디
   profile_id: uuid()
@@ -19,7 +19,7 @@ export const prompts = pgTable("prompts", {
     })
     .notNull(), // 프롬프트 작성자 아이디
   title: text().notNull(), // 프롬프트 제목
-  description: text(), // 프롬프트 설명
+  content: text(), // 프롬프트 설명
   tags: text().array(), // 프롬프트 태그
   is_public: boolean().notNull().default(false), // 프롬프트 공개 여부
   text_template: text(), // 프롬프트 텍스트 템플릿
