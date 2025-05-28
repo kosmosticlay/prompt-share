@@ -12,7 +12,6 @@ export const profiles = pgTable("profiles", {
     .references(() => users.id, { onDelete: "cascade" }), // 프로필 고유 아이디
   name: text().notNull(), // 이름
   username: text().notNull().unique(), // 유저네임
-  email: text().notNull().unique(), // 프로필 이메일
   avatar_url: text(), // 프로필 아바타 이미지 주소
   bio: text(), // 프로필 자기소개
   created_at: timestamp().notNull().defaultNow(), // 프로필 생성 시간
