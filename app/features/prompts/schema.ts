@@ -30,7 +30,9 @@ export const prompts = pgTable("prompts", {
 
 /* prompt_variables / 프롬프트 변수 */
 export const promptVariables = pgTable("prompt_variables", {
-  variable_id: bigint({ mode: "number" }).primaryKey(), // 변수 고유 아이디
+  variable_id: bigint({ mode: "number" })
+    .primaryKey()
+    .generatedAlwaysAsIdentity(), // 변수 고유 아이디
   prompt_id: bigint({ mode: "number" })
     .notNull()
     .references(() => prompts.prompt_id, { onDelete: "cascade" }), // 프롬프트 고유 아이디
@@ -42,8 +44,11 @@ export const promptVariables = pgTable("prompt_variables", {
   validation: jsonb("validation"), // { min: 1, max: 100 }, { minDate: "2024-01-01" } 등
 });
 
+/* variable_options / 변수 옵션 */
 export const variableOptions = pgTable("variable_options", {
-  option_id: bigint("option_id", { mode: "number" }).primaryKey(), // 옵션 고유 아이디
+  option_id: bigint("option_id", { mode: "number" })
+    .primaryKey()
+    .generatedAlwaysAsIdentity(), // 옵션 고유 아이디
   variable_id: bigint("variable_id", { mode: "number" })
     .notNull()
     .references(() => promptVariables.variable_id, { onDelete: "cascade" }), // 변수 고유 아이디
