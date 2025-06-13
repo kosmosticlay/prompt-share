@@ -1,0 +1,2 @@
+ALTER TABLE "prompt_variables" ALTER COLUMN "variable_id" ADD GENERATED ALWAYS AS IDENTITY (sequence name "prompt_variables_variable_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1);--> statement-breakpoint
+ALTER TABLE "variable_options" ALTER COLUMN "option_id" ADD GENERATED ALWAYS AS IDENTITY (sequence name "variable_options_option_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1);
